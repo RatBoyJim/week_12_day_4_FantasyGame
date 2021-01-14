@@ -1,12 +1,10 @@
 package players.fighters;
 
-public class Viking extends Fighters {
+public class Viking extends Fighter {
 
-    private String name;
 
-    public Viking(int healthPoints, int defencePoints, int attackPoints) {
-        super(healthPoints, defencePoints, attackPoints);
-        this.name = name;
+    public Viking(int healthPoints, int defencePoints, int attackPoints, String name) {
+        super(healthPoints, defencePoints, attackPoi);
 
     }
 }

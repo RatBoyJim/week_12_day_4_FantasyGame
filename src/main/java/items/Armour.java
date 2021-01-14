@@ -1,4 +1,4 @@
 package items;
 
-public class Armour {
+public class Armour extends Item{
 }

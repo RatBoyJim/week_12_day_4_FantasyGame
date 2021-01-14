@@ -2,23 +2,17 @@ package items;
 
 public enum ArmourType {
 
-    AXE(8),
-    SWORD(7),
-    CLUB(5),
-    STAFF(3),
-    SPEAR(6),
-    HAMMER(4),
-    SCYTHE(6),
-    BOW(3),
-    FIREBALL(8);
+    SHIELD(8),
+    HELMET(6),
+    ARMOUR(9);
 
-    private final int attackDamage;
+    private final int defencePoints;
 
-    WeaponType(int attackDamage) {
-        this.attackDamage = attackDamage;
+    ArmourType(int attackDamage) {
+        this.defencePoints = attackDamage;
     }
 
-    public int getAttackDamage() {
-        return this.attackDamage;
+    public int getDefencePoints() {
+        return this.defencePoints;
     }
 }
