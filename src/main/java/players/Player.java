@@ -9,12 +9,14 @@ public abstract class Player {
         private ArrayList<Item> inventory;
         private int defencePoints;
         private int attackPoints;
+        private String name;
 
-        public Player(int healthPoints, int defencePoints, int attackPoints) {
+        public Player(int healthPoints, int defencePoints, int attackPoints, String name) {
             this.healthPoints = healthPoints;
             this.defencePoints = defencePoints;
             this.attackPoints = attackPoints;
             this.inventory = new ArrayList<Item>();
+            this.name = name;
     }
 
     public int getHealthPoints() {
@@ -31,5 +33,15 @@ public abstract class Player {
 
     public int getAttackPoints() {
         return this.attackPoints;
+    }
+
+    public String getName() {return this.name;}
+
+    public void addItemToInventory(Item item) {
+            this.inventory.add(item);
+    }
+
+    public int countInventory() {
+            return this.inventory.size();
     }
 }

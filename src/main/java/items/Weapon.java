@@ -2,9 +2,14 @@ package items;
 
 public class Weapon extends Item{
 
-    private WeaponType weapon;
+    private WeaponType weaponType;
 
-    public WeaponType getWeapon(){
-            return this.weapon;
+    public Weapon(WeaponType weaponType) {
+        this.weaponType = weaponType;
     }
 }
+
+//    public WeaponType getWeapon(){
+//            return this.weaponType;
+//    }
+//}
