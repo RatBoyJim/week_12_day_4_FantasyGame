@@ -1,3 +1,4 @@
+import items.Armour;
 import items.Item;
 import items.Weapon;
 import items.WeaponType;
@@ -11,10 +12,12 @@ public class VikingTest {
 
     Viking viking;
     Item axe;
+    Weapon weapon;
+    Armour armour;
 
     @Before
     public void setUp(){
-    viking = new Viking(100, 25, 75, "Mads");
+    viking = new Viking(100, 25, 75, "Mads", weapon, armour);
     axe = new Weapon(WeaponType.AXE);
     }
 
