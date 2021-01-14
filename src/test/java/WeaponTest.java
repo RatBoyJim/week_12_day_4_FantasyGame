@@ -14,9 +14,9 @@ public class WeaponTest {
         weapon = new Weapon(WeaponType.AXE);
     }
 
-//    @Test
-//    public void canGetWeaponType() {
-//        assertEquals(WeaponType.AXE, weapon.getWeapon());
-//    }
+    @Test
+    public void canGetWeaponType() {
+        assertEquals(WeaponType.AXE, weapon.getWeapon());
+    }
 
 }

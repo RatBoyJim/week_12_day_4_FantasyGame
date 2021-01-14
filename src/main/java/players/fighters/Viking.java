@@ -18,3 +18,5 @@ public class Viking extends Fighter {
     public void changeWeapon(){
     }
 }
+
+
