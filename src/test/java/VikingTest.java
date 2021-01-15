@@ -1,7 +1,4 @@
-import items.Armour;
-import items.Item;
-import items.Weapon;
-import items.WeaponType;
+import items.*;
 import org.junit.Before;
 import org.junit.Test;
 import players.fighters.Viking;
@@ -14,11 +11,14 @@ public class VikingTest {
     Item axe;
     Weapon weapon;
     Armour armour;
+    Treasure treasure;
 
     @Before
     public void setUp(){
     viking = new Viking(100, 25, 75, "Mads", weapon, armour);
     axe = new Weapon(WeaponType.AXE);
+    treasure = new Treasure(TreasureType.PS5);
+    armour = new Armour(ArmourType.SHIELD);
     }
 
     @Test
@@ -44,7 +44,9 @@ public class VikingTest {
     @Test
     public void canAddToInventory() {
         viking.addItemToInventory(axe);
-        assertEquals(1, viking.countInventory());
+        viking.addItemToInventory(treasure);
+        viking.addItemToInventory(armour);
+        assertEquals(3, viking.countInventory());
     }
 
 }
