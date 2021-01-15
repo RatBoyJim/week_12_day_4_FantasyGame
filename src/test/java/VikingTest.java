@@ -3,22 +3,30 @@ import org.junit.Before;
 import org.junit.Test;
 import players.fighters.Viking;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 public class VikingTest {
 
     Viking viking;
     Item axe;
+    Item sword;
     Weapon weapon;
+    Weapon weapon2;
+    Weapon weapon3;
     Armour armour;
     Treasure treasure;
 
     @Before
     public void setUp(){
-    viking = new Viking(100, 25, 75, "Mads", weapon, armour);
-    axe = new Weapon(WeaponType.AXE);
-    treasure = new Treasure(TreasureType.PS5);
-    armour = new Armour(ArmourType.SHIELD);
+        axe = new Weapon(WeaponType.AXE);
+        sword = new Weapon(WeaponType.SWORD);
+        treasure = new Treasure(TreasureType.PS5);
+        armour = new Armour(ArmourType.SHIELD);
+        weapon = new Weapon(WeaponType.CLUB);
+        weapon2 = new Weapon(WeaponType.AXE);
+        weapon3 = new Weapon(WeaponType.SWORD);
+        viking = new Viking(100, 25, 75, "Mads", weapon, armour);
     }
 
     @Test
@@ -47,6 +55,51 @@ public class VikingTest {
         viking.addItemToInventory(treasure);
         viking.addItemToInventory(armour);
         assertEquals(3, viking.countInventory());
+    }
+
+    @Test
+    public void canRemoveFromInventory() {
+        viking.addItemToInventory(axe);
+        viking.addItemToInventory(treasure);
+        viking.addItemToInventory(armour);
+        viking.removeItemFromInventory(axe);
+        assertEquals(2, viking.countInventory());
+    }
+
+    @Test
+    public void canSwapItemInInventory() {
+        assertEquals("CLUB", viking.getCurrentWeaponName());
+        assertEquals(0, viking.countInventory());
+        viking.addItemToInventory(axe);
+        assertEquals(1, viking.countInventory());
+        viking.swapWeaponFromInventory(axe);
+        viking.addItemToInventory(sword);
+        viking.swapWeaponFromInventory(sword);
+        viking.createWeaponsList();
+        assertEquals("SWORD", viking.getCurrentWeaponName());
+        assertEquals("CLUB, AXE", viking.getNamesOfWeaponsInWeaponsList());
+    }
+
+
+    @Test
+    public void canCreateWeaponsList() {
+        viking.addItemToInventory(axe);
+        viking.addItemToInventory(sword);
+        viking.addItemToInventory(treasure);
+        viking.addItemToInventory(armour);
+        viking.createWeaponsList();
+        assertEquals(2, viking.getSizeOfWeaponsList());
+    }
+
+    @Test
+    public void startsWithWeapon() {
+        assertEquals("CLUB", viking.getCurrentWeaponName());
+    }
+
+    @Test
+    public void canChangeWeapon() {
+        viking.setWeapon(weapon2);
+        assertEquals("AXE", viking.getCurrentWeaponName());
     }
 
 }

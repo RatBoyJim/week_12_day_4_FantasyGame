@@ -41,7 +41,14 @@ public abstract class Player {
             this.inventory.add(item);
     }
 
+    public void removeItemFromInventory(Item item) {
+            this.inventory.remove(item);
+    }
+
+
     public int countInventory() {
             return this.inventory.size();
     }
+
+
 }

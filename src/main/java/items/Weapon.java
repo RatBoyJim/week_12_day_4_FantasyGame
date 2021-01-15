@@ -12,4 +12,8 @@ public class Weapon extends Item {
     public WeaponType getWeapon(){
             return this.weaponType;
     }
+
+    public String getWeaponName() {
+        return this.weaponType.name();
+    }
 }
