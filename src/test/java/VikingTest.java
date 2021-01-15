@@ -3,8 +3,7 @@ import org.junit.Before;
 import org.junit.Test;
 import players.fighters.Viking;
 
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class VikingTest {
 
@@ -66,19 +65,19 @@ public class VikingTest {
         assertEquals(2, viking.countInventory());
     }
 
-    @Test
-    public void canSwapItemInInventory() {
-        assertEquals("CLUB", viking.getCurrentWeaponName());
-        assertEquals(0, viking.countInventory());
-        viking.addItemToInventory(axe);
-        assertEquals(1, viking.countInventory());
-        viking.swapWeaponFromInventory(axe);
-        viking.addItemToInventory(sword);
-        viking.swapWeaponFromInventory(sword);
-        viking.createWeaponsList();
-        assertEquals("SWORD", viking.getCurrentWeaponName());
-        assertEquals("CLUB, AXE", viking.getNamesOfWeaponsInWeaponsList());
-    }
+//    @Test
+//    public void canSwapItemInInventory() {
+//        assertEquals("CLUB", viking.getCurrentWeaponName());
+//        assertEquals(0, viking.countInventory());
+//        viking.addItemToInventory(axe);
+//        assertEquals(1, viking.countInventory());
+//        viking.swapWeaponFromInventory(axe);
+//        viking.addItemToInventory(sword);
+//        viking.swapWeaponFromInventory(sword);
+//        viking.createWeaponsList();
+//        assertEquals("SWORD", viking.getCurrentWeaponName());
+//        assertEquals("CLUB, AXE", viking.getNamesOfWeaponsInWeaponsList());
+//    }
 
 
     @Test
