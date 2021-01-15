@@ -1,10 +1,10 @@
 package players.magicMen;
 
-import items.Armour;
-import items.Weapon;
+import items.Spell;
+import items.Creature;
 
 public class Warlock extends MagicMan {
-    public Warlock(int healthPoints, int defencePoints, int attackPoints, String name, Weapon weapon, Armour armour) {
-        super(healthPoints, defencePoints, attackPoints, name, weapon, armour);
+    public Warlock(int healthPoints, int defencePoints, int attackPoints, String name, Spell spell, Creature creature) {
+        super(healthPoints, defencePoints, attackPoints, name, spell, creature);
     }
 }
