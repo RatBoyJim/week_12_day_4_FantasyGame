@@ -18,4 +18,5 @@ public abstract class Room {
     public void setAsCompleted() {
         this.completed = true;
     }
+
 }

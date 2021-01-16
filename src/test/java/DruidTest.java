@@ -43,7 +43,7 @@ public class DruidTest {
 
     @Test
     public void hasAttackPoints() {
-        assertEquals(0, druid.getAttackPoints());
+        assertEquals(20, druid.getAttackPoints());
     }
 
     @Test
@@ -86,8 +86,8 @@ public class DruidTest {
         druid.addItemToInventory(spliff);
         druid.addItemToInventory(elixir);
         druid.addItemToInventory(treasure);
-        druid.createhealingToolList();
-        assertEquals(2, druid.getSizeOfhealingToolList());
+        druid.createHealingToolList();
+        assertEquals(2, druid.getSizeOfHealingToolList());
     }
 
     @Test

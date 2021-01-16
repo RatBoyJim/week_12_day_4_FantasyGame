@@ -1,7 +1,6 @@
 package rooms;
 
 import enemies.Enemy;
-import items.Treasure;
 
 public class BadGuyRoom extends Room {
 
@@ -20,9 +19,12 @@ public class BadGuyRoom extends Room {
         this.enemy = enemy;
     }
 
-    public void checkIfCompleted() {
+    public boolean checkIfCompleted() {
         if (this.enemy.getHealthPoints() <= 0) {
             super.setAsCompleted();
+            return true;
         }
+        return false;
     }
+
 }

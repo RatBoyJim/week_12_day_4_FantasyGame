@@ -1,6 +1,5 @@
 package players.fighters;
 
-import behaviours.IAttack;
 import items.*;
 import players.Player;
 import enemies.Enemy;
@@ -11,7 +10,7 @@ import rooms.TreasureRoom;
 import java.util.ArrayList;
 
 
-public class Fighter extends Player implements IAttack {
+public class Fighter extends Player {
 
     private Weapon weapon;
     private Armour armour;
@@ -89,7 +88,8 @@ public class Fighter extends Player implements IAttack {
             addItemToInventory(((TreasureRoom) room2).getTreasure());
         }
         if (room2 instanceof BadGuyRoom){
-            fighter.attack(fighter, ((BadGuyRoom) room2).getEnemy());
+            fighter.attack(fighter, ((BadGuyRoom) room2)
+                    .getEnemy());
         }
     }
 }

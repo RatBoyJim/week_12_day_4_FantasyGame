@@ -1,14 +1,12 @@
 package players.magicMen;
 
-
-import behaviours.IAttack;
 import enemies.Enemy;
 import items.*;
 import players.Player;
 
 import java.util.ArrayList;
 
-public class MagicMan extends Player implements IAttack {
+public class MagicMan extends Player {
 
     private Spell spell;
     private Creature creature;
@@ -127,6 +125,5 @@ public class MagicMan extends Player implements IAttack {
         enemyHP -= playerAP;
         enemy.setHealthPoints(enemyHP);
     }
-
 
 }

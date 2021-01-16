@@ -4,7 +4,6 @@ import enemies.Enemy;
 import items.HealingTool;
 import items.HealingToolType;
 import items.Item;
-import items.WeaponType;
 import players.Player;
 
 import java.util.ArrayList;
@@ -23,7 +22,7 @@ public class Cleric extends Player {
         healingToolListNames = new ArrayList<String>();
     }
 
-    public void createhealingToolList() {
+    public void createHealingToolList() {
         for (Item item: this.getInventory()) {
             if (item instanceof HealingTool){
                 healingToolList.add(item);
@@ -31,7 +30,7 @@ public class Cleric extends Player {
         }
     }
 
-    public int getSizeOfhealingToolList() {
+    public int getSizeOfHealingToolList() {
         return this.healingToolList.size();
     }
 
@@ -63,6 +62,14 @@ public class Cleric extends Player {
         int playerBaseAttackPoints = getAttackPoints();
         int newTotalHealingPoints = healingToolRecoveryPoints + playerBaseAttackPoints;
         setAttackPoints(newTotalHealingPoints);
+    }
+
+    @Override
+    public void attack(Player player, Enemy enemy) {
+        int enemyHP = enemy.getHealthPoints();
+        int clericAP = player.getAttackPoints();
+        enemyHP -= clericAP;
+        enemy.setHealthPoints(enemyHP);
     }
 
     public void heal(Player player, Player playerToHeal) {

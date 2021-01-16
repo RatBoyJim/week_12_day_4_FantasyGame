@@ -1,9 +1,12 @@
 package players;
 
 import java.util.ArrayList;
+
+import behaviours.IAttack;
+import enemies.Enemy;
 import items.Item;
 
-public abstract class Player {
+public abstract class Player implements IAttack {
 
         private int healthPoints;
         private ArrayList<Item> inventory;
@@ -59,4 +62,5 @@ public abstract class Player {
     }
 
 
+    public abstract void attack(Player player, Enemy enemy);
 }
