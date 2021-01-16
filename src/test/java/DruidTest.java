@@ -2,6 +2,7 @@ import items.*;
 import org.junit.Before;
 import org.junit.Test;
 import players.clerics.Druid;
+import players.fighters.Viking;
 
 import static org.junit.Assert.assertEquals;
 
@@ -13,6 +14,9 @@ public class DruidTest {
     HealingTool healingTool;
     HealingTool healingTool2;
     Treasure treasure;
+    Viking viking;
+    Weapon weapon;
+    Armour armour;
 
     @Before
     public void setUp() {
@@ -21,7 +25,10 @@ public class DruidTest {
         healingTool = new HealingTool(HealingToolType.ELIXIR);
         healingTool2 = new HealingTool(HealingToolType.DRUGS);
         treasure = new Treasure(TreasureType.PS5);
-        druid = new Druid(150, 15, 0, "Getafix", healingTool);
+        weapon = new Weapon(WeaponType.AXE);
+        armour = new Armour(ArmourType.SHIELD);
+        druid = new Druid(150, 15, 20, "Getafix", healingTool);
+        viking = new Viking(100, 25, 75, "Mads", weapon, armour);
     }
 
     @Test
@@ -92,6 +99,12 @@ public class DruidTest {
     public void canChangeWeapon() {
         druid.setHealingTool(healingTool2);
         assertEquals("DRUGS", druid.getCurrentHealingToolName());
+    }
+
+    @Test
+    public void canHeal() {
+        druid.heal(druid, viking);
+        assertEquals(130, viking.getHealthPoints());
     }
 
 }

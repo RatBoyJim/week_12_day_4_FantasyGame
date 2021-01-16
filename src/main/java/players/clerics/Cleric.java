@@ -1,7 +1,10 @@
 package players.clerics;
 
+import enemies.Enemy;
 import items.HealingTool;
+import items.HealingToolType;
 import items.Item;
+import items.WeaponType;
 import players.Player;
 
 import java.util.ArrayList;
@@ -40,7 +43,7 @@ public class Cleric extends Player {
         this.healingTool = healingTool;
     }
 
-    public ArrayList<String> getNamesOfHealingToolsInhealingToolList() {
+    public ArrayList<String> getNamesOfHealingToolsInHealingToolList() {
         for (Item healingTool: healingToolList) {
             healingToolListNames.add(((HealingTool) healingTool).getHealingToolName());
         }
@@ -52,5 +55,21 @@ public class Cleric extends Player {
         removeItemFromInventory(itemWanted);
         setHealingTool((HealingTool)itemWanted);
 
+    }
+
+    public void updateAttackPointsWithEquippedHealingTool() {
+        HealingToolType healingToolType = this.healingTool.getHealingTool();
+        int healingToolRecoveryPoints = healingToolType.getHealthRecovery();
+        int playerBaseAttackPoints = getAttackPoints();
+        int newTotalHealingPoints = healingToolRecoveryPoints + playerBaseAttackPoints;
+        setAttackPoints(newTotalHealingPoints);
+    }
+
+    public void heal(Player player, Player playerToHeal) {
+        int playerToHealHP = playerToHeal.getHealthPoints();
+        updateAttackPointsWithEquippedHealingTool();
+        int healerAP = player.getAttackPoints();
+        playerToHealHP += healerAP;
+        playerToHeal.setHealthPoints(playerToHealHP);
     }
 }

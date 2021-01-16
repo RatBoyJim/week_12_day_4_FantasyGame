@@ -11,6 +11,10 @@ public class TreasureRoom extends Room {
         this.treasure = treasure;
     }
 
+    public Treasure getTreasure() {
+        return this.treasure;
+    }
+
     public void setTreasure(Treasure treasure) {
         this.treasure = treasure;
     }
@@ -18,4 +22,9 @@ public class TreasureRoom extends Room {
     public String getCurrentTreasureName() {
         return this.treasure.getTreasure().name();
     };
+
+    public void treasureCollected() {
+        this.treasure = null;
+        this.setAsCompleted();
+    }
 }
