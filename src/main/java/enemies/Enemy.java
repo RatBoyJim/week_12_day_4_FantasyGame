@@ -1,6 +1,9 @@
 package enemies;
 
-public abstract class Enemy {
+import behaviours.IAttack;
+import players.Player;
+
+public abstract class Enemy implements IAttack {
 
     private int healthPoints;
     private int attackPoints;
@@ -25,5 +28,13 @@ public abstract class Enemy {
     }
 
     public String getName() {return this.name;}
+
+    @Override
+    public void attack(Player player, Enemy enemy) {
+        int enemyAP = enemy.getAttackPoints();
+        int playerHP = player.getHealthPoints();
+        playerHP -= enemyAP;
+        player.setHealthPoints(playerHP);
+    }
 
 }

@@ -1,11 +1,12 @@
 package behaviours;
 
 import enemies.Enemy;
-import players.fighters.Fighter;
+import players.Player;
+
 
 public interface IAttack {
 
-    void attackByFighter(Fighter fighter, Enemy enemy);
+    void attack(Player player, Enemy enemy);
 
-//    void attackByEnemy(Player player);
+
 }

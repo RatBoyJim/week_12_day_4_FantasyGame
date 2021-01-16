@@ -59,13 +59,11 @@ public class Fighter extends Player implements IAttack {
     }
 
     @Override
-    public void attackByFighter(Fighter fighter, Enemy enemy) {
+    public void attack(Player player, Enemy enemy) {
         int enemyHP = enemy.getHealthPoints();
-        int fighterAP = fighter.getAttackPoints();
+        int fighterAP = player.getAttackPoints();
         enemyHP -= fighterAP;
         enemy.setHealthPoints(enemyHP);
-
-
     }
 }
 //    attackByFirstPokemon(){

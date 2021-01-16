@@ -23,6 +23,10 @@ public abstract class Player {
         return this.healthPoints;
     }
 
+    public void setHealthPoints(int healthPoints) {
+        this.healthPoints = healthPoints;
+    }
+
     public ArrayList<Item> getInventory() {
         return this.inventory;
     }

@@ -2,7 +2,6 @@ package enemies;
 
 import items.Armour;
 import items.Weapon;
-import players.Player;
 
 public class Orc extends Enemy{
         private Weapon weapon;
