@@ -1,8 +1,5 @@
 package enemies;
 
-import java.util.ArrayList;
-import items.Item;
-
 public abstract class Enemy {
 
     private int healthPoints;
@@ -17,6 +14,10 @@ public abstract class Enemy {
 
     public int getHealthPoints() {
         return this.healthPoints;
+    }
+
+    public void setHealthPoints(int newHealthPoints) {
+        this.healthPoints = newHealthPoints;
     }
 
     public int getAttackPoints() {

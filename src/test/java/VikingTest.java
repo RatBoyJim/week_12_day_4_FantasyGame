@@ -1,3 +1,5 @@
+import enemies.Enemy;
+import enemies.Orc;
 import items.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,6 +17,7 @@ public class VikingTest {
     Weapon weapon3;
     Armour armour;
     Treasure treasure;
+    Enemy enemy;
 
     @Before
     public void setUp(){
@@ -25,6 +28,7 @@ public class VikingTest {
         weapon = new Weapon(WeaponType.CLUB);
         weapon2 = new Weapon(WeaponType.AXE);
         weapon3 = new Weapon(WeaponType.SWORD);
+        enemy = new Orc(50, 25, "Orcy McOrcface", weapon, armour);
         viking = new Viking(100, 25, 75, "Mads", weapon, armour);
     }
 
@@ -99,6 +103,12 @@ public class VikingTest {
     public void canChangeWeapon() {
         viking.setWeapon(weapon2);
         assertEquals("AXE", viking.getCurrentWeaponName());
+    }
+
+    @Test
+    public void canAttack() {
+        viking.attackByFighter(viking, enemy);
+        assertEquals(-25, enemy.getHealthPoints());
     }
 
 }

@@ -1,12 +1,14 @@
 package players.fighters;
 
+import behaviours.IAttack;
 import items.*;
 import players.Player;
+import enemies.Enemy;
 
 import java.util.ArrayList;
 
 
-public class Fighter extends Player {
+public class Fighter extends Player implements IAttack {
 
     private Weapon weapon;
     private Armour armour;
@@ -55,4 +57,25 @@ public class Fighter extends Player {
         setWeapon((Weapon)itemWanted);
 
     }
+
+    @Override
+    public void attackByFighter(Fighter fighter, Enemy enemy) {
+        int enemyHP = enemy.getHealthPoints();
+        int fighterAP = fighter.getAttackPoints();
+        enemyHP -= fighterAP;
+        enemy.setHealthPoints(enemyHP);
+
+
+    }
 }
+//    attackByFirstPokemon(){
+//        if (this.pokemonDetails2.stats[0].base_stat < this.pokemonMoves1.pp) {
+//            eventBus.$emit('set-health-p2', this.pokemonDetails2.stats[0].base_stat)
+//            eventBus.$emit('pokemon-defeated-2', this.pokemonDetails2.isDefeated = true)
+//        const payload = {'pokemonDetails1':this.pokemonDetails1, 'pokemonDetails2':this.pokemonDetails2}
+//            eventBus.$emit('pokemon-1-win', payload);
+//        }else{
+//            eventBus.$emit('set-health-p2', this.pokemonMoves1.pp)
+//            eventBus.$emit('p1played', this.p1turn = false)
+//            eventBus.$emit('p2next', this.p2turn = true)
+//        }},
