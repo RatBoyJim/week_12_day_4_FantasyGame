@@ -108,7 +108,7 @@ public class VikingTest {
     @Test
     public void canAttack() {
         viking.attack(viking, enemy);
-        assertEquals(-25, enemy.getHealthPoints());
+        assertEquals(-30, enemy.getHealthPoints());
     }
 
 }

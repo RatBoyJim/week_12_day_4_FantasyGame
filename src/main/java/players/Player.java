@@ -27,6 +27,10 @@ public abstract class Player {
         this.healthPoints = healthPoints;
     }
 
+    public void setAttackPoints(int attackPoints) {
+        this.attackPoints = attackPoints;
+    }
+
     public ArrayList<Item> getInventory() {
         return this.inventory;
     }

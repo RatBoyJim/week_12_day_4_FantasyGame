@@ -58,22 +58,20 @@ public class Fighter extends Player implements IAttack {
 
     }
 
+    public void updateAttackPointsWithEquippedWeapon() {
+        WeaponType weaponType = this.weapon.getWeapon();
+        int weaponAttackPoints = weaponType.getAttackDamage();
+        int playerBaseAttackPoints = getAttackPoints();
+        int newTotalAttackPoints = weaponAttackPoints + playerBaseAttackPoints;
+        setAttackPoints(newTotalAttackPoints);
+    }
+
     @Override
     public void attack(Player player, Enemy enemy) {
         int enemyHP = enemy.getHealthPoints();
+        updateAttackPointsWithEquippedWeapon();
         int fighterAP = player.getAttackPoints();
         enemyHP -= fighterAP;
         enemy.setHealthPoints(enemyHP);
     }
 }
-//    attackByFirstPokemon(){
-//        if (this.pokemonDetails2.stats[0].base_stat < this.pokemonMoves1.pp) {
-//            eventBus.$emit('set-health-p2', this.pokemonDetails2.stats[0].base_stat)
-//            eventBus.$emit('pokemon-defeated-2', this.pokemonDetails2.isDefeated = true)
-//        const payload = {'pokemonDetails1':this.pokemonDetails1, 'pokemonDetails2':this.pokemonDetails2}
-//            eventBus.$emit('pokemon-1-win', payload);
-//        }else{
-//            eventBus.$emit('set-health-p2', this.pokemonMoves1.pp)
-//            eventBus.$emit('p1played', this.p1turn = false)
-//            eventBus.$emit('p2next', this.p2turn = true)
-//        }},

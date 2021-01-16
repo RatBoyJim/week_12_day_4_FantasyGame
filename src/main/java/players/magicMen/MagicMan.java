@@ -1,14 +1,14 @@
 package players.magicMen;
 
 
-import items.Creature;
-import items.Item;
-import items.Spell;
+import behaviours.IAttack;
+import enemies.Enemy;
+import items.*;
 import players.Player;
 
 import java.util.ArrayList;
 
-public class MagicMan extends Player {
+public class MagicMan extends Player implements IAttack {
 
     private Spell spell;
     private Creature creature;
@@ -93,6 +93,39 @@ public class MagicMan extends Player {
         removeItemFromInventory(itemWanted);
         setCreature((Creature) itemWanted);
 
+    }
+
+    public void updateAttackPointsWithEquippedSpell() {
+        SpellType spellType = this.spell.getSpell();
+        int spellAttackPoints = spellType.getAttackDamage();
+        int playerBaseAttackPoints = getAttackPoints();
+        int newTotalAttackPoints = spellAttackPoints + playerBaseAttackPoints;
+        setAttackPoints(newTotalAttackPoints);
+    }
+
+    public void updateAttackPointsWithEquippedCreature() {
+        CreatureType creatureType = this.creature.getCreature();
+        int creatureAttackPoints = creatureType.getAttackDamage();
+        int playerBaseAttackPoints = getAttackPoints();
+        int newTotalAttackPoints = creatureAttackPoints + playerBaseAttackPoints;
+        setAttackPoints(newTotalAttackPoints);
+    }
+
+    @Override
+    public void attack(Player player, Enemy enemy) {
+        int enemyHP = enemy.getHealthPoints();
+        updateAttackPointsWithEquippedSpell();
+        int playerAP = player.getAttackPoints();
+        enemyHP -= playerAP;
+        enemy.setHealthPoints(enemyHP);
+    }
+
+    public void attackWithCreature(Player player, Enemy enemy) {
+        int enemyHP = enemy.getHealthPoints();
+        updateAttackPointsWithEquippedCreature();
+        int playerAP = player.getAttackPoints();
+        enemyHP -= playerAP;
+        enemy.setHealthPoints(enemyHP);
     }
 
 

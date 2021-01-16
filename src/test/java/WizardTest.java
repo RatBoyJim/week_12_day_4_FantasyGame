@@ -1,6 +1,9 @@
+import enemies.Enemy;
+import enemies.Troll;
 import items.*;
 import org.junit.Before;
 import org.junit.Test;
+import players.Player;
 import players.magicMen.Wizard;
 
 import static org.junit.Assert.assertEquals;
@@ -19,6 +22,9 @@ public class WizardTest {
     Creature creature;
     Creature creature2;
     Treasure treasure;
+    Enemy enemy;
+    Weapon weapon;
+    Armour armour;
     
     @Before
     public void setUp() {
@@ -33,7 +39,10 @@ public class WizardTest {
         creature2 = new Creature(CreatureType.MANTICORE);
         dragon = new Creature(CreatureType.DRAGON);
         manticore = new Creature(CreatureType.MANTICORE);
+        weapon = new Weapon(WeaponType.CLUB);
+        armour = new Armour(ArmourType.HELMET);
         wizard = new Wizard(60, 15, 0, "Sooty", spell, creature);
+        enemy = new Troll(50, 20, "KoldSkol", weapon, armour);
     }
 
     @Test
@@ -126,6 +135,18 @@ public class WizardTest {
     public void canChangeCreature() {
         wizard.setCreature(creature2);
         assertEquals("MANTICORE", wizard.getCurrentCreatureName());
+    }
+
+    @Test
+    public void canAttackWithSpell() {
+        wizard.attack(wizard, enemy);
+        assertEquals(48, enemy.getHealthPoints());
+    }
+
+    @Test
+    public void canAttackWithCreature() {
+        wizard.attackWithCreature(wizard, enemy);
+        assertEquals(41, enemy.getHealthPoints());
     }
     
 }
