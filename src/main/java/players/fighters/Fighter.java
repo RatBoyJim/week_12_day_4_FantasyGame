@@ -4,6 +4,9 @@ import behaviours.IAttack;
 import items.*;
 import players.Player;
 import enemies.Enemy;
+import rooms.BadGuyRoom;
+import rooms.Room;
+import rooms.TreasureRoom;
 
 import java.util.ArrayList;
 
@@ -73,5 +76,20 @@ public class Fighter extends Player implements IAttack {
         int fighterAP = player.getAttackPoints();
         enemyHP -= fighterAP;
         enemy.setHealthPoints(enemyHP);
+    }
+
+    public void playRooms(Fighter fighter, Room room1, Room room2) {
+        if (room1 instanceof TreasureRoom){
+            addItemToInventory(((TreasureRoom) room1).getTreasure());
+        }
+        if (room1 instanceof BadGuyRoom){
+            fighter.attack(fighter, ((BadGuyRoom) room1).getEnemy());
+        }
+        if (room2 instanceof TreasureRoom){
+            addItemToInventory(((TreasureRoom) room2).getTreasure());
+        }
+        if (room2 instanceof BadGuyRoom){
+            fighter.attack(fighter, ((BadGuyRoom) room2).getEnemy());
+        }
     }
 }

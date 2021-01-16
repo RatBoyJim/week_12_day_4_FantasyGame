@@ -132,4 +132,14 @@ public class VikingTest {
         assertEquals(true, badGuyRoom.isCompleted());
 
     }
+
+    @Test
+    public void canPlayRooms() {
+        viking.playRooms(viking, treasureRoom, badGuyRoom);
+        treasureRoom.treasureCollected();
+        badGuyRoom.checkIfCompleted();
+        assertEquals(1, viking.countInventory());
+        assertEquals(true, treasureRoom.isCompleted());
+        assertEquals(true, badGuyRoom.isCompleted());
+    }
 }
