@@ -20,13 +20,13 @@ public class OrcTest {
     public void setUp() {
         weapon = new Weapon(WeaponType.AXE);
         armour = new Armour(ArmourType.HELMET);
-        orc = new Orc(50, 20, "Orcy McOrcFace", weapon, armour);
+        orc = new Orc(50, 40, "Orcy McOrcFace", weapon, armour);
         viking = new Viking(100, 25, 75, "Mads", weapon, armour);
     }
 
     @Test
     public void canAttack() {
         orc.attack(viking, orc);
-        assertEquals(80, viking.getHealthPoints());
+        assertEquals(85, viking.getHealthPoints());
     }
 }

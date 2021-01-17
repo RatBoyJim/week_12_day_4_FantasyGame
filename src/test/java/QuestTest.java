@@ -55,9 +55,9 @@ public class QuestTest {
         spell = new Spell(SpellType.NIPPLE_TWEAK);
         creature = new Creature(CreatureType.MANTICORE);
         healingTool = new HealingTool(HealingToolType.SPLIFF);
-        enemy = new Orc(50, 25, "Orcy McOrcface", weapon, armour);
-        enemy2 = new Orc(50, 25, "Orcy McOrcington", weapon, armour);
-        enemy3 = new Troll(25, 10, "BawFace", weapon, armour);
+        enemy = new Orc(50, 45, "Orcy McOrcface", weapon, armour);
+        enemy2 = new Orc(50, 45, "Orcy McOrcington", weapon, armour);
+        enemy3 = new Troll(25, 60, "BawFace", weapon, armour);
         treasureRoom = new TreasureRoom("Room of Fortune", false, treasure);
         treasureRoom2 = new TreasureRoom("Room of Good Boon", false, treasure2);
         treasureRoom3 = new TreasureRoom("Room That Has Gold In It", false, treasure3);
@@ -95,6 +95,8 @@ public class QuestTest {
         quest.addRoomToRoomList(badGuyRoom2);
         System.out.println("Viking " + viking.getName() + " starts with " + viking.getNamesOfItemsInInventory() + " in their inventory");
         System.out.println("Viking "  + viking.getName() + " starts with " + viking.getHealthPoints() + " Health Points");
+        viking.updateDefencePointsWithEquippedArmour();
+        viking.updateAttackPointsWithEquippedWeapon();
         quest.quest(viking);
         System.out.println("Viking "  + viking.getName() + " ends with " + viking.getNamesOfItemsInInventory() + " in their inventory");
         System.out.println("Viking "  + viking.getName() + " ends with " + viking.getHealthPoints() + " Health Points");
@@ -109,11 +111,15 @@ public class QuestTest {
         quest.addRoomToRoomList(treasureRoom2);
         System.out.println("Warlock " + warlock.getName() + " starts with " + warlock.getNamesOfItemsInInventory() + " in their inventory");
         System.out.println("Warlock "  + warlock.getName() + " starts with " + warlock.getHealthPoints() + " Health Points");
+        System.out.println("Warlock "  + warlock.getName() + " starts with " + warlock.getDefencePoints() + " Defence Points");
+        warlock.updateAttackPointsWithEquippedSpell();
+        warlock.updateDefencePointsWithEquippedCreature();
         quest.quest(warlock);
         System.out.println("Warlock "  + warlock.getName() + " ends with " + warlock.getNamesOfItemsInInventory() + " in their inventory");
         System.out.println("Warlock "  + warlock.getName() + " ends with " + warlock.getHealthPoints() + " Health Points");
+        System.out.println("Warlock "  + warlock.getName() + " ends with " + warlock.getDefencePoints() + " Defence Points");
         System.out.println(" ");
-        assertFalse(quest.checkIfQuestCompleted());
+        assertTrue(quest.checkIfQuestCompleted());
     }
 
     @Test

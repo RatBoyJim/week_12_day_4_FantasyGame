@@ -33,7 +33,12 @@ public abstract class Enemy implements IAttack {
     public void attack(Player player, Enemy enemy) {
         int enemyAP = enemy.getAttackPoints();
         int playerHP = player.getHealthPoints();
-        playerHP -= enemyAP;
+        int playerDP = player.getDefencePoints();
+        if (playerDP >= enemyAP){
+            playerHP = playerHP;
+        }else {
+            playerHP -= (enemyAP - playerDP);
+        }
         player.setHealthPoints(playerHP);
     }
 
