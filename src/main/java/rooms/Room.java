@@ -12,7 +12,7 @@ public abstract class Room {
     }
 
     public boolean isCompleted() {
-        return completed;
+        return this.completed;
     }
 
     public void setAsCompleted() {

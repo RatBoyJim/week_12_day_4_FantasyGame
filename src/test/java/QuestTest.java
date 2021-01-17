@@ -7,10 +7,7 @@ import players.clerics.Druid;
 import players.fighters.Viking;
 import players.magicMen.Warlock;
 import rooms.BadGuyRoom;
-import rooms.Room;
 import rooms.TreasureRoom;
-
-import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
@@ -37,7 +34,6 @@ public class QuestTest {
     TreasureRoom treasureRoom2;
     BadGuyRoom badGuyRoom;
     BadGuyRoom badGuyRoom2;
-    ArrayList<Room> roomList;
 
 
     @Before
@@ -54,21 +50,20 @@ public class QuestTest {
         creature = new Creature(CreatureType.MANTICORE);
         healingTool = new HealingTool(HealingToolType.SPLIFF);
         enemy = new Orc(50, 25, "Orcy McOrcface", weapon, armour);
-        enemy = new Orc(50, 25, "Orcy McOrcington", weapon, armour);
+        enemy2 = new Orc(50, 25, "Orcy McOrcington", weapon, armour);
         treasureRoom = new TreasureRoom("Room of Fortune", false, treasure);
         treasureRoom2 = new TreasureRoom("Room of Good Boon", false, treasure2);
-        viking = new Viking(100, 25, 75, "Mads", weapon, armour);
+        viking = new Viking (100, 25, 75, "Mads", weapon, armour);
         warlock = new Warlock(50, 25, 0, "Magic Mike", spell, creature);
         druid = new Druid(150, 25, 25, "Getafix", healingTool);
         badGuyRoom = new BadGuyRoom("Room of Doom", false, enemy);
         badGuyRoom2 = new BadGuyRoom("Room of Ruin", false, enemy2);
-        roomList = new ArrayList<Room>();
         quest = new Quest(false);
     }
 
     @Test
     public void canFacilitateBattle() {
-        quest.battle(viking, enemy, badGuyRoom);
+        quest.battle(viking, badGuyRoom);
         assertEquals(true, badGuyRoom.checkIfCompleted());
     }
 
@@ -89,10 +84,10 @@ public class QuestTest {
         quest.addRoomToRoomList(treasureRoom2);
         System.out.println(quest.getRoomList());
         System.out.println(viking.getHealthPoints());
-        quest.quest(roomList, viking);
+        quest.quest(viking);
         System.out.println(viking.getInventory());
         System.out.println(viking.getHealthPoints());
-        assertEquals(false, quest.checkIfCompleted());
+        assertEquals(true, quest.checkIfQuestCompleted());
     }
 
 

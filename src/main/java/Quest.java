@@ -1,5 +1,6 @@
 import enemies.Enemy;
 import players.Player;
+import players.fighters.Viking;
 import rooms.BadGuyRoom;
 import rooms.Room;
 import rooms.TreasureRoom;
@@ -17,13 +18,13 @@ public class Quest {
 
     }
 
-    public void battle(Player player, Enemy enemy, BadGuyRoom room) {
-        while (player.getHealthPoints() >= 0 && enemy.getHealthPoints() >= 0) {
-            if (!room.checkIfCompleted());
-            player.attack(player, enemy);
-            enemy.attack(player, enemy);
+    public void battle(Player player, Room room) {
+        while (player.getHealthPoints() >= 0 && ((BadGuyRoom) room).getEnemy().getHealthPoints() >= 0) {
+            if (!((BadGuyRoom) room).checkIfCompleted());
+            player.attack(player, ((BadGuyRoom) room).getEnemy());
+            ((BadGuyRoom) room).getEnemy().attack(player, ((BadGuyRoom) room).getEnemy());
         }
-        room.checkIfCompleted();
+        ((BadGuyRoom)room).checkIfCompleted();
     }
 
     public void addRoomToRoomList(Room room) {
@@ -38,33 +39,37 @@ public class Quest {
         return this.roomList.size();
     }
 
-    public boolean checkIfCompleted() {
-        int roomCount = 0;
+    public boolean checkIfQuestCompleted() {
+        int completedRoomCount = 0;
         for (Room room: this.roomList) {
             if (room.isCompleted()) {
-                roomCount += 1;
+                completedRoomCount += 1;
             }
         }
-        if (roomCount == getRoomListSize()){
+        if (completedRoomCount == getRoomListSize()){
             this.complete = true;
         }
         return this.complete;
 
     }
 
-    public void quest(ArrayList<Room> roomList, Player player) {
-        for (Room room: roomList) {
+    public void quest(Player player) {
+        for (Room room: this.roomList) {
             if (room instanceof TreasureRoom){
                 player.addItemToInventory(((TreasureRoom) room).getTreasure());
                 ((TreasureRoom) room).treasureCollected();
-            }else{
-                battle(player, ((BadGuyRoom) room).getEnemy(), ((BadGuyRoom) room));
             }
-        }
-        checkIfCompleted();
+            if (room instanceof BadGuyRoom){
+                while (player.getHealthPoints() >= 0 && ((BadGuyRoom) room).getEnemy().getHealthPoints() >= 0) {
+                    if (!((BadGuyRoom) room).checkIfCompleted());
+                    player.attack(player, ((BadGuyRoom) room).getEnemy());
+                    ((BadGuyRoom) room).getEnemy().attack(player, ((BadGuyRoom) room).getEnemy());
+                }
+                ((BadGuyRoom)room).checkIfCompleted();
+                }
+            }
+        checkIfQuestCompleted();
     }
 }
 
-//if (room instanceof BadGuyRoom){
-//        battle(player, ((BadGuyRoom) room).getEnemy(), ((BadGuyRoom) room));
-//    }
+
