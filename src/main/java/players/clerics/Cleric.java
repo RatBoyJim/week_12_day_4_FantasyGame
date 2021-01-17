@@ -36,7 +36,7 @@ public class Cleric extends Player {
 
     public String getCurrentHealingToolName() {
         return this.healingTool.getItemName();
-    };
+    }
 
     public void setHealingTool(HealingTool healingTool) {
         this.healingTool = healingTool;

@@ -1,6 +1,4 @@
-import enemies.Enemy;
 import players.Player;
-import players.fighters.Viking;
 import rooms.BadGuyRoom;
 import rooms.Room;
 import rooms.TreasureRoom;
@@ -20,9 +18,8 @@ public class Quest {
 
     public void battle(Player player, Room room) {
         while (player.getHealthPoints() >= 0 && ((BadGuyRoom) room).getEnemy().getHealthPoints() >= 0) {
-            if (!((BadGuyRoom) room).checkIfCompleted());
-            player.attack(player, ((BadGuyRoom) room).getEnemy());
-            ((BadGuyRoom) room).getEnemy().attack(player, ((BadGuyRoom) room).getEnemy());
+                player.attack(player, ((BadGuyRoom) room).getEnemy());
+                ((BadGuyRoom) room).getEnemy().attack(player, ((BadGuyRoom) room).getEnemy());
         }
         ((BadGuyRoom)room).checkIfCompleted();
     }
@@ -61,7 +58,6 @@ public class Quest {
             }
             if (room instanceof BadGuyRoom){
                 while (player.getHealthPoints() >= 0 && ((BadGuyRoom) room).getEnemy().getHealthPoints() >= 0) {
-                    if (!((BadGuyRoom) room).checkIfCompleted());
                     player.attack(player, ((BadGuyRoom) room).getEnemy());
                     ((BadGuyRoom) room).getEnemy().attack(player, ((BadGuyRoom) room).getEnemy());
                 }

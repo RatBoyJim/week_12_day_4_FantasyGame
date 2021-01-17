@@ -106,9 +106,28 @@ public class VikingTest {
     }
 
     @Test
+    public void startsWithArmour() {
+        assertEquals("SHIELD", viking.getCurrentArmourName());
+    }
+
+    @Test
     public void canChangeWeapon() {
         viking.setWeapon(weapon2);
         assertEquals("AXE", viking.getCurrentWeaponName());
+    }
+
+    @Test
+    public void canUpdateAttackPoints() {
+        assertEquals(75, viking.getAttackPoints());
+        viking.updateAttackPointsWithEquippedWeapon();
+        assertEquals(80, viking.getAttackPoints());
+    }
+
+    @Test
+    public void canUpdateDefencePoints() {
+        assertEquals(25, viking.getDefencePoints());
+        viking.updateDefencePointsWithEquippedArmour();
+        assertEquals(33, viking.getDefencePoints());
     }
 
     @Test
@@ -122,14 +141,14 @@ public class VikingTest {
         viking.addItemToInventory(treasureRoom.getTreasure());
         treasureRoom.treasureCollected();
         assertEquals(1, viking.countInventory());
-        assertEquals(true, treasureRoom.isCompleted());
+        assertTrue(treasureRoom.isCompleted());
     }
 
     @Test
     public void canCompleteBadGuyRoom() {
         viking.attack(viking, badGuyRoom.getEnemy());
         badGuyRoom.checkIfCompleted();
-        assertEquals(true, badGuyRoom.isCompleted());
+        assertTrue(badGuyRoom.isCompleted());
 
     }
 
@@ -139,7 +158,7 @@ public class VikingTest {
         treasureRoom.treasureCollected();
         badGuyRoom.checkIfCompleted();
         assertEquals(1, viking.countInventory());
-        assertEquals(true, treasureRoom.isCompleted());
-        assertEquals(true, badGuyRoom.isCompleted());
+        assertTrue(treasureRoom.isCompleted());
+        assertTrue(badGuyRoom.isCompleted());
     }
 }

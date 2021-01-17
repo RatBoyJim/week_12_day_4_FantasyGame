@@ -2,7 +2,6 @@ package enemies;
 
 import items.Armour;
 import items.Weapon;
-import players.fighters.Fighter;
 
 public class Troll extends Enemy {
 

@@ -9,7 +9,7 @@ public class Armour extends Item {
     }
 
 
-    public ArmourType getTreasure(){
+    public ArmourType getArmour(){
         return this.armourType;
     }
 

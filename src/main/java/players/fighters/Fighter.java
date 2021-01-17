@@ -42,6 +42,10 @@ public class Fighter extends Player {
         return this.weapon.getItemName();
     }
 
+    public String getCurrentArmourName() {
+        return this.armour.getItemName();
+    }
+
     public void setWeapon(Weapon weapon) {
         this.weapon = weapon;
     }
@@ -68,11 +72,20 @@ public class Fighter extends Player {
         setAttackPoints(newTotalAttackPoints);
     }
 
+    public void updateDefencePointsWithEquippedArmour() {
+        ArmourType armourType = this.armour.getArmour();
+        int armourDefencePoints = armourType.getDefencePoints();
+        int playerBaseDefencePoints = getDefencePoints();
+        int newTotalDefencePoints = armourDefencePoints + playerBaseDefencePoints;
+        setDefencePoints(newTotalDefencePoints);
+    }
+
 
     @Override
     public void attack(Player player, Enemy enemy) {
         int enemyHP = enemy.getHealthPoints();
         updateAttackPointsWithEquippedWeapon();
+        updateDefencePointsWithEquippedArmour();
         int fighterAP = player.getAttackPoints();
         enemyHP -= fighterAP;
         enemy.setHealthPoints(enemyHP);

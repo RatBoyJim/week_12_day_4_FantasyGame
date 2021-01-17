@@ -3,8 +3,6 @@ package players.fighters;
 import items.Armour;
 import items.Weapon;
 
-import java.util.ArrayList;
-
 public class Viking extends Fighter {
 
 

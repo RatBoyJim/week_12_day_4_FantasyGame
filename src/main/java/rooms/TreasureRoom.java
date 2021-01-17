@@ -21,7 +21,7 @@ public class TreasureRoom extends Room {
 
     public String getCurrentTreasureName() {
         return this.treasure.getTreasure().name();
-    };
+    }
 
     public void treasureCollected() {
         this.treasure = null;

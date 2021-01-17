@@ -19,10 +19,10 @@ public class MagicMan extends Player {
         super(healthPoints, defencePoints, attackPoints, name);
         this.spell = spell;
         this.creature = creature;
-        spellsList = new ArrayList<Item>();
-        spellsListNames = new ArrayList<String>();
-        creatureList = new ArrayList<Item>();
-        creatureListNames = new ArrayList<String>();
+        spellsList = new ArrayList<>();
+        spellsListNames = new ArrayList<>();
+        creatureList = new ArrayList<>();
+        creatureListNames = new ArrayList<>();
     }
 
     public void createSpellsList() {
@@ -51,11 +51,11 @@ public class MagicMan extends Player {
 
     public String getCurrentSpellName() {
         return this.spell.getItemName();
-    };
+    }
 
     public String getCurrentCreatureName() {
         return this.creature.getItemName();
-    };
+    }
 
     public void setSpell(Spell spell) {
         this.spell = spell;
@@ -67,14 +67,14 @@ public class MagicMan extends Player {
 
     public ArrayList<String> getNamesOfSpellsInSpellsList() {
         for (Item spell: spellsList) {
-            spellsListNames.add(((Spell) spell).getItemName());
+            spellsListNames.add(spell.getItemName());
         }
         return this.spellsListNames;
     }
 
     public ArrayList<String> getNamesOfCreaturesInCreaturesList() {
         for (Item creature: creatureList) {
-            creatureListNames.add(((Creature) creature).getItemName());
+            creatureListNames.add(creature.getItemName());
         }
         return this.spellsListNames;
     }

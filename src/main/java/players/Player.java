@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import behaviours.IAttack;
 import enemies.Enemy;
 import items.Item;
-import items.Weapon;
+
 
 public abstract class Player implements IAttack {
 
@@ -35,6 +35,10 @@ public abstract class Player implements IAttack {
 
     public void setAttackPoints(int attackPoints) {
         this.attackPoints = attackPoints;
+    }
+
+    public void setDefencePoints(int defencePoints) {
+        this.defencePoints = defencePoints;
     }
 
     public ArrayList<Item> getInventory() {
