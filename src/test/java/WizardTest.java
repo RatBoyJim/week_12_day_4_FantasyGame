@@ -3,7 +3,6 @@ import enemies.Troll;
 import items.*;
 import org.junit.Before;
 import org.junit.Test;
-import players.Player;
 import players.magicMen.Wizard;
 
 import static org.junit.Assert.assertEquals;
@@ -144,9 +143,11 @@ public class WizardTest {
     }
 
     @Test
-    public void canAttackWithCreature() {
-        wizard.attackWithCreature(wizard, enemy);
-        assertEquals(41, enemy.getHealthPoints());
+    public void creatureCanIncreaseDefencePoints() {
+        assertEquals(15, wizard.getDefencePoints());
+        wizard.updateDefencePointsWithEquippedCreature();
+        assertEquals(24, wizard.getDefencePoints());
     }
+
     
 }

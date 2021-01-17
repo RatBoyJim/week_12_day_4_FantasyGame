@@ -101,12 +101,12 @@ public class MagicMan extends Player {
         setAttackPoints(newTotalAttackPoints);
     }
 
-    public void updateAttackPointsWithEquippedCreature() {
+    public void updateDefencePointsWithEquippedCreature() {
         CreatureType creatureType = this.creature.getCreature();
         int creatureAttackPoints = creatureType.getAttackDamage();
-        int playerBaseAttackPoints = getAttackPoints();
-        int newTotalAttackPoints = creatureAttackPoints + playerBaseAttackPoints;
-        setAttackPoints(newTotalAttackPoints);
+        int playerBaseDefencePoints = getDefencePoints();
+        int newTotalAttackPoints = creatureAttackPoints + playerBaseDefencePoints;
+        setDefencePoints(newTotalAttackPoints);
     }
 
     @Override
@@ -118,12 +118,5 @@ public class MagicMan extends Player {
         enemy.setHealthPoints(enemyHP);
     }
 
-    public void attackWithCreature(Player player, Enemy enemy) {
-        int enemyHP = enemy.getHealthPoints();
-        updateAttackPointsWithEquippedCreature();
-        int playerAP = player.getAttackPoints();
-        enemyHP -= playerAP;
-        enemy.setHealthPoints(enemyHP);
-    }
 
 }
