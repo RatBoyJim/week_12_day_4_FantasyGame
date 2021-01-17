@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import behaviours.IAttack;
 import enemies.Enemy;
 import items.Item;
+import items.Weapon;
 
 public abstract class Player implements IAttack {
 
@@ -13,6 +14,7 @@ public abstract class Player implements IAttack {
         private int defencePoints;
         private int attackPoints;
         private String name;
+        private ArrayList<String> inventoryItemNames;
 
         public Player(int healthPoints, int defencePoints, int attackPoints, String name) {
             this.healthPoints = healthPoints;
@@ -20,6 +22,7 @@ public abstract class Player implements IAttack {
             this.attackPoints = attackPoints;
             this.inventory = new ArrayList<Item>();
             this.name = name;
+            this.inventoryItemNames = new ArrayList<String>();
     }
 
     public int getHealthPoints() {
@@ -61,6 +64,12 @@ public abstract class Player implements IAttack {
             return this.inventory.size();
     }
 
+    public ArrayList<String> getNamesOfItemsInInventory() {
+        for (Item item: inventory) {
+            inventoryItemNames.add(item.getItemName());
+        }
+        return this.inventoryItemNames;
+    }
 
     public abstract void attack(Player player, Enemy enemy);
 }

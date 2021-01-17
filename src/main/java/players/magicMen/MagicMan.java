@@ -50,11 +50,11 @@ public class MagicMan extends Player {
     }
 
     public String getCurrentSpellName() {
-        return this.spell.getSpellName();
+        return this.spell.getItemName();
     };
 
     public String getCurrentCreatureName() {
-        return this.creature.getCreatureName();
+        return this.creature.getItemName();
     };
 
     public void setSpell(Spell spell) {
@@ -67,14 +67,14 @@ public class MagicMan extends Player {
 
     public ArrayList<String> getNamesOfSpellsInSpellsList() {
         for (Item spell: spellsList) {
-            spellsListNames.add(((Spell) spell).getSpellName());
+            spellsListNames.add(((Spell) spell).getItemName());
         }
         return this.spellsListNames;
     }
 
     public ArrayList<String> getNamesOfCreaturesInCreaturesList() {
         for (Item creature: creatureList) {
-            creatureListNames.add(((Creature) creature).getCreatureName());
+            creatureListNames.add(((Creature) creature).getItemName());
         }
         return this.spellsListNames;
     }

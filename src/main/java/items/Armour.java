@@ -12,4 +12,8 @@ public class Armour extends Item {
     public ArmourType getTreasure(){
         return this.armourType;
     }
+
+    public String getItemName() {
+        return this.armourType.name();
+    }
 }

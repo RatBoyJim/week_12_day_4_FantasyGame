@@ -8,8 +8,11 @@ public class Treasure extends Item {
         this.treasureType = treasureType;
     }
 
-
     public TreasureType getTreasure(){
         return this.treasureType;
+    }
+
+    public String getItemName() {
+        return this.treasureType.name();
     }
 }

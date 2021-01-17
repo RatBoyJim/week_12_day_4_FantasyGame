@@ -12,7 +12,7 @@ public class HealingTool extends Item{
         return this.healingToolType;
     }
 
-    public String getHealingToolName() {
+    public String getItemName() {
         return this.healingToolType.name();
     }
 }

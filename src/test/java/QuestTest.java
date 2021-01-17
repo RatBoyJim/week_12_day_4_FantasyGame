@@ -1,5 +1,6 @@
 import enemies.Enemy;
 import enemies.Orc;
+import enemies.Troll;
 import items.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -28,12 +29,16 @@ public class QuestTest {
     Armour armour;
     Treasure treasure;
     Treasure treasure2;
+    Treasure treasure3;
     Enemy enemy;
     Enemy enemy2;
+    Enemy enemy3;
     TreasureRoom treasureRoom;
     TreasureRoom treasureRoom2;
+    TreasureRoom treasureRoom3;
     BadGuyRoom badGuyRoom;
     BadGuyRoom badGuyRoom2;
+    BadGuyRoom badGuyRoom3;
 
 
     @Before
@@ -42,6 +47,7 @@ public class QuestTest {
         sword = new Weapon(WeaponType.SWORD);
         treasure = new Treasure(TreasureType.PS5);
         treasure2 = new Treasure(TreasureType.DIAMONDS);
+        treasure3 = new Treasure(TreasureType.GOLD);
         armour = new Armour(ArmourType.SHIELD);
         weapon = new Weapon(WeaponType.CLUB);
         weapon2 = new Weapon(WeaponType.AXE);
@@ -51,20 +57,23 @@ public class QuestTest {
         healingTool = new HealingTool(HealingToolType.SPLIFF);
         enemy = new Orc(50, 25, "Orcy McOrcface", weapon, armour);
         enemy2 = new Orc(50, 25, "Orcy McOrcington", weapon, armour);
+        enemy3 = new Troll(25, 10, "BawFace", weapon, armour);
         treasureRoom = new TreasureRoom("Room of Fortune", false, treasure);
         treasureRoom2 = new TreasureRoom("Room of Good Boon", false, treasure2);
+        treasureRoom3 = new TreasureRoom("Room That Has Gold In It", false, treasure3);
         viking = new Viking (100, 25, 75, "Mads", weapon, armour);
         warlock = new Warlock(50, 25, 0, "Magic Mike", spell, creature);
-        druid = new Druid(150, 25, 25, "Getafix", healingTool);
+        druid = new Druid(175, 25, 25, "Getafix", healingTool);
         badGuyRoom = new BadGuyRoom("Room of Doom", false, enemy);
         badGuyRoom2 = new BadGuyRoom("Room of Ruin", false, enemy2);
+        badGuyRoom3 = new BadGuyRoom("Room of Yer Goin' Doon", false, enemy3);
         quest = new Quest(false);
     }
 
     @Test
     public void canFacilitateBattle() {
         quest.battle(viking, badGuyRoom);
-        assertEquals(true, badGuyRoom.checkIfCompleted());
+        assertTrue(badGuyRoom.checkIfCompleted());
     }
 
     @Test
@@ -80,14 +89,46 @@ public class QuestTest {
     public void canFacilitateQuest() {
         quest.addRoomToRoomList(treasureRoom);
         quest.addRoomToRoomList(badGuyRoom);
+        quest.addRoomToRoomList(treasureRoom3);
+        quest.addRoomToRoomList(badGuyRoom3);
+        quest.addRoomToRoomList(treasureRoom2);
+        quest.addRoomToRoomList(badGuyRoom2);
+        System.out.println("Viking " + viking.getName() + " starts with " + viking.getNamesOfItemsInInventory() + " in their inventory");
+        System.out.println("Viking "  + viking.getName() + " starts with " + viking.getHealthPoints() + " Health Points");
+        quest.quest(viking);
+        System.out.println("Viking "  + viking.getName() + " ends with " + viking.getNamesOfItemsInInventory() + " in their inventory");
+        System.out.println("Viking "  + viking.getName() + " ends with " + viking.getHealthPoints() + " Health Points");
+        System.out.println(" ");
+        assertTrue(quest.checkIfQuestCompleted());
+    }
+
+    @Test
+    public void canFacilitateAnotherQuest() {
+        quest.addRoomToRoomList(treasureRoom);
+        quest.addRoomToRoomList(badGuyRoom);
+        quest.addRoomToRoomList(treasureRoom2);
+        System.out.println("Warlock " + warlock.getName() + " starts with " + warlock.getNamesOfItemsInInventory() + " in their inventory");
+        System.out.println("Warlock "  + warlock.getName() + " starts with " + warlock.getHealthPoints() + " Health Points");
+        quest.quest(warlock);
+        System.out.println("Warlock "  + warlock.getName() + " ends with " + warlock.getNamesOfItemsInInventory() + " in their inventory");
+        System.out.println("Warlock "  + warlock.getName() + " ends with " + warlock.getHealthPoints() + " Health Points");
+        System.out.println(" ");
+        assertFalse(quest.checkIfQuestCompleted());
+    }
+
+    @Test
+    public void canFacilitateYetAnotherQuest() {
+        quest.addRoomToRoomList(treasureRoom3);
+        quest.addRoomToRoomList(badGuyRoom);
         quest.addRoomToRoomList(badGuyRoom2);
         quest.addRoomToRoomList(treasureRoom2);
-        System.out.println(quest.getRoomList());
-        System.out.println(viking.getHealthPoints());
-        quest.quest(viking);
-        System.out.println(viking.getInventory());
-        System.out.println(viking.getHealthPoints());
-        assertEquals(true, quest.checkIfQuestCompleted());
+        System.out.println("Druid " + druid.getName() + " starts with " + druid.getNamesOfItemsInInventory() + " in their inventory");
+        System.out.println("Druid "  + druid.getName() + " starts with " + druid.getHealthPoints() + " Health Points");
+        quest.quest(druid);
+        System.out.println("Druid "  + druid.getName() + " ends with " + druid.getNamesOfItemsInInventory() + " in their inventory");
+        System.out.println("Druid "  + druid.getName() + " ends with " + druid.getHealthPoints() + " Health Points");
+        System.out.println(" ");
+        assertTrue(quest.checkIfQuestCompleted());
     }
 
 

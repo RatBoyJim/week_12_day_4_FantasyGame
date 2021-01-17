@@ -13,7 +13,7 @@ public class Weapon extends Item {
             return this.weaponType;
     }
 
-    public String getWeaponName() {
+    public String getItemName() {
         return this.weaponType.name();
     }
 }

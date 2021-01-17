@@ -12,7 +12,7 @@ public class Spell extends Item{
         return this.spellType;
     }
 
-    public String getSpellName() {
+    public String getItemName() {
         return this.spellType.name();
     }
 

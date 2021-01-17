@@ -12,7 +12,7 @@ public class Creature extends Item{
         return this.creatureType;
     }
 
-    public String getCreatureName() {
+    public String getItemName() {
         return this.creatureType.name();
     }
 
