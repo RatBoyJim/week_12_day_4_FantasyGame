@@ -40,7 +40,7 @@ public class Fighter extends Player {
 
     public String getCurrentWeaponName() {
         return this.weapon.getItemName();
-    };
+    }
 
     public void setWeapon(Weapon weapon) {
         this.weapon = weapon;
@@ -48,7 +48,7 @@ public class Fighter extends Player {
 
     public ArrayList<String> getNamesOfWeaponsInWeaponsList() {
         for (Item weapon: weaponsList) {
-            weaponsListNames.add(((Weapon) weapon).getItemName());
+            weaponsListNames.add(weapon.getItemName());
         }
         return this.weaponsListNames;
     }
@@ -67,6 +67,7 @@ public class Fighter extends Player {
         int newTotalAttackPoints = weaponAttackPoints + playerBaseAttackPoints;
         setAttackPoints(newTotalAttackPoints);
     }
+
 
     @Override
     public void attack(Player player, Enemy enemy) {
